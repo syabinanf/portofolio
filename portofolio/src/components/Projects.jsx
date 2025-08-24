@@ -29,7 +29,7 @@ export default function About() {
           {(item.tag || []).map((tag, i) => (
             <Button
               key={i}
-              variant="dark"
+              variant="outlined"
               disabled
               style={{
                 margin: '5px 10px 5px 0',
@@ -47,7 +47,7 @@ export default function About() {
         <div style={{ marginTop: '20px' }}>
           {item.link ? (
             <a href={item.link} target="_blank" rel="noopener noreferrer">
-              <Button variant="dark" style={{ fontSize: '18px', padding: '15px 30px' , color: '#F2827F'}}>
+              <Button variant="outlined" style={{ fontSize: '18px', padding: '15px 30px' , color: '#F2827F'}}>
                 View Project
               </Button>
             </a>
