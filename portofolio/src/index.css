@@ -1,0 +1,25 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Outfit", sans-serif;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+.App {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background: linear-gradient(90.21deg, #403A3E -5.91%, #BE5869 111.58%);
+}
+
+.navbar-container {
+  padding-left: 0;
+}
+.animated-button {
+  transition: all 0.10s ease-in;
+}
