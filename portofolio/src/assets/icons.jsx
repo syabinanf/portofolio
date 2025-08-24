@@ -6,7 +6,7 @@ import xd from '../assets/xd.png';
 import android from '../assets/android.png';
 import firebase from '../assets/firebase.png';
 import html from '../assets/html.png';
-import react from '../assets/react.png';
+import react from '../assets/React.png';
 import python from '../assets/python.png';
 import kotlin from '../assets/kotlin.png';
 import canva from '../assets/canva.png';
