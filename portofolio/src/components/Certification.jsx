@@ -1,4 +1,7 @@
-import { ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+
 import { TextEffectOne } from 'react-text-animate';
 import { itemData } from '../const/cer'; // Pastikan path dan isi itemData benar
 
