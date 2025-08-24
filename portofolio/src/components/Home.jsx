@@ -1,5 +1,8 @@
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+<<<<<<< HEAD
 import ReactRoundedImage from "react-rounded-image";
+=======
+>>>>>>> 1716b99 (`Refactor Home component and add new certificate`)
 import { TextEffectOne, TextEffectTwo } from 'react-text-animate';
 import { icons } from "../assets/icons";
 import { motion } from "framer-motion";
@@ -21,6 +24,7 @@ export default function Home() {
             <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '20px' }}>
 
               {/* Let's Connect Button */}
+<<<<<<< HEAD
               <a href="mailto:syabinanurpajriyanti@gmail.com" target="_blank" rel="noopener noreferrer">
                 <Button className="animated-button" variant="dark" style={{ fontSize: '18px', color: '#F2827F' }}>
                   <FaEnvelope style={{ marginRight: '10px' }} /> Let's Connect
@@ -29,6 +33,26 @@ export default function Home() {
 
               {/* Download CV Button */}
               <a href="/path/to/your/CV_Syabina.pdf" download>
+=======
+              <Button
+                onClick={() => {
+                  window.open(
+                    "https://mail.google.com/mail/?view=cm&fs=1&to=syabinanurpajriyanti@gmail.com&su=Halo%20Syabina&body=Perkenalkan%2C%20saya%20ingin%20terhubung%20dengan%20Anda.",
+                    "_blank"
+                  );
+                }}
+                className="animated-button"
+                variant="dark"
+                style={{ fontSize: '18px', color: '#F2827F' }}
+              >
+                <FaEnvelope style={{ marginRight: '10px' }} /> Let's Connect
+              </Button>
+
+
+
+              {/* Download CV Button */}
+              <a href="src\assets\CV_ina.pdf" download>
+>>>>>>> 1716b99 (`Refactor Home component and add new certificate`)
                 <Button className="animated-button" variant="dark" style={{ marginLeft: '50px', fontSize: '18px', color: '#F2827F' }}>
                   <FaDownload style={{ marginRight: '10px' }} /> Download CV
                 </Button>
@@ -43,6 +67,7 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               style={{ marginLeft: "90px" }} // Adjust space between photo and icons
             >
+<<<<<<< HEAD
               <ReactRoundedImage
                 image={icons.ina}
                 roundedColor="#000000FF"
@@ -52,6 +77,23 @@ export default function Home() {
                 // borderRadius="15"
                 hoverColor="#F2827F"
               />
+=======
+              <img
+                src={icons.ina}
+                alt="ina"
+                style={{
+                  width: "550px",
+                  height: "500px",
+                  borderRadius: "800px", // mirip roundedSize
+                  border: "4px solid #000000FF", // sama kayak roundedColor
+                  objectFit: "cover",
+                  transition: "0.3s",
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.borderColor = "#F2827F")}
+                onMouseOut={(e) => (e.currentTarget.style.borderColor = "#000000FF")}
+              />
+
+>>>>>>> 1716b99 (`Refactor Home component and add new certificate`)
             </motion.div>
             {/* Social Media Icons - Positioned beside the photo */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginLeft: '0px' }}>
@@ -201,6 +243,7 @@ in a team as well as independently."
 
 
         {/* Skills Section */}
+<<<<<<< HEAD
         <div style={{ padding: '200px 0px', textAlign: 'center' }}>
           <div style={{ display: 'inline-block', position: 'relative', textAlign: 'center' }}>
             <TextEffectOne text="SKILLS" style={{ color: '#ffffff', fontWeight: 'bold', fontSize: "40px" }} />
@@ -221,11 +264,46 @@ in a team as well as independently."
                 .filter(([key]) => key !== "ina")
                 .map(([key, value], index) => (
                   <Col key={key} xs={7} md={2}>
+=======
+        {/* Skills Section */}
+        <div style={{ padding: "120px 0", textAlign: "center" }}>
+          {/* Title */}
+          <div style={{ display: "inline-block" }}>
+            <TextEffectOne
+              text="SKILLS"
+              style={{ color: "#ffffff", fontWeight: "bold", fontSize: "40px" }}
+            />
+            <div
+              style={{
+                height: "4px",
+                width: "60%",
+                backgroundColor: "#ffc1cc",
+                margin: "10px auto 0",
+                borderRadius: "2px",
+              }}
+            />
+          </div>
+
+          {/* Icon Section */}
+          <div
+            style={{
+              margin: "50px auto",
+              maxWidth: "1100px",
+              color: "white",
+            }}
+          >
+            <Row className="justify-content-center">
+              {Object.entries(icons)
+                .filter(([key]) => key !== "ina")
+                .map(([key, value], index) => (
+                  <Col key={key} xs={6} sm={4} md={2} className="mb-4 d-flex justify-content-center">
+>>>>>>> 1716b99 (`Refactor Home component and add new certificate`)
                     <motion.div
                       initial={{ opacity: 0, y: 50 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.2, duration: 1 }}
                     >
+<<<<<<< HEAD
                       <ReactRoundedImage
                         image={value}
                         roundedColor="#000000FF"
@@ -233,11 +311,26 @@ in a team as well as independently."
                         imageHeight="100"
                         roundedSize="8"
                       />
+=======
+                      <img
+                        src={value}
+                        alt="profile"
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          borderRadius: "8px", // mirip roundedSize
+                          border: "4px solid transparent", // roundedColor transparent
+                          objectFit: "cover",
+                        }}
+                      />
+
+>>>>>>> 1716b99 (`Refactor Home component and add new certificate`)
                     </motion.div>
                   </Col>
                 ))}
             </Row>
           </div>
+<<<<<<< HEAD
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -298,6 +391,61 @@ in a team as well as independently."
             </Col>
           </Row>
         </div>
+=======
+
+          {/* Skill Cards */}
+          <div className="d-flex justify-content-center">
+            <Row className="justify-content-center" style={{ gap: "100px" }}>
+              {[
+                {
+                  title: "Soft Skills",
+                  items: [
+                    "Problem-Solving",
+                    "Communication",
+                    "Time Management",
+                    "Adaptability",
+                    "Analytical Thinking",
+                  ],
+                },
+                {
+                  title: "Leadership",
+                  items: [
+                    "Team Leadership",
+                    "Stakeholder Engagement",
+                    "Strategic Communication",
+                  ],
+                },
+                {
+                  title: "Technical Skills",
+                  items: ["Data Analysis", "UI/UX Design", "Web Development", "Mobile Development"],
+                },
+              ].map((section, idx) => (
+                <Col key={idx} xs={12} sm={6} md={4} lg={3}>
+                  <div
+                    style={{
+                      width: "100%",
+                      textAlign: "center",
+                      backgroundColor: "#1a1a1a",
+                      padding: "20px",
+                      borderRadius: "10px",
+                      boxShadow: "0 0 15px rgba(255, 192, 203, 0.3)",
+                      height: "100%",
+                    }}
+                  >
+                    <h4 style={{ marginBottom: "15px", color: "#ffc1cc" }}>{section.title}</h4>
+                    {section.items.map((item, i) => (
+                      <p key={i} style={{ color: "white", margin: "5px 0" }}>
+                        {item}
+                      </p>
+                    ))}
+                  </div>
+                </Col>
+              ))}
+            </Row>
+          </div>
+        </div>
+
+>>>>>>> 1716b99 (`Refactor Home component and add new certificate`)
 
       </Container>
     </section>
