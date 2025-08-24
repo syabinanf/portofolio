@@ -10,12 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.x.x",
-    "@emotion/styled": "^11.x.x",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@fontsource/outfit": "^5.2.5",
     "@fontsource/roboto": "^5.2.5",
     "@mui/icons-material": "^5.18.0",
-    "@mui/material": "^5.x.x",
+    "@mui/material": "^5.18.0",
     "@primer/octicons-react": "^19.15.1",
     "bootstrap": "^5.3.5",
     "framer-motion": "^12.9.2",
