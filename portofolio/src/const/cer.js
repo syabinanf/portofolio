@@ -8,10 +8,7 @@ import govokasi from '../assets/sertif/govokasi.jpeg';
 import novo from '../assets/sertif/novo.jpeg';
 import seniko from '../assets/sertif/penulis.jpeg';
 import seniko1 from '../assets/sertif/presenter.jpeg';
-<<<<<<< HEAD
-=======
 import kem from '../assets/sertif/kem.png';
->>>>>>> 1716b99 (`Refactor Home component and add new certificate`)
 
 export const itemData = [
     {
@@ -53,13 +50,8 @@ export const itemData = [
     {
       img: dicoding6,
       title: 'DICODING',
-<<<<<<< HEAD
-    }]
-=======
     },
-     {
-      img: kem,
+    {
+    img: kem,
       title: 'ToT Kemendikdas',
-    },
-  ]
->>>>>>> 1716b99 (`Refactor Home component and add new certificate`)
+    }];
