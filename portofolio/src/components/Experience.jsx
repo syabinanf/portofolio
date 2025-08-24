@@ -1,6 +1,6 @@
 import { TextEffectOne } from 'react-text-animate'; 
 import { experienced, organizational } from '../const/exp';
-import { color } from 'framer-motion';
+
 
 export default function Experience() {
   const contentStyle = {
