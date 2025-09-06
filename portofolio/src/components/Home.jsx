@@ -54,7 +54,7 @@ export default function Home() {
                 alt="Syabina Nur Pajriyanti"
                 className="img-fluid rounded-circle border border-dark border-4"
                 style={{
-                  maxWidth: "500px",
+                  maxWidth: "350px",
                   maxHeight: "500px",
                   objectFit: "cover",
                   transition: "0.3s",
