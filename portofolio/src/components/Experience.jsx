@@ -76,7 +76,7 @@ export default function Experience() {
       <TextEffectOne
         text="Work Experience"
         style={{
-          color: '#e75480',
+          color: '#ffffff',
           fontWeight: 'bold',
           fontSize: '30px',
           paddingBottom: '40px',
@@ -87,7 +87,7 @@ export default function Experience() {
       <TextEffectOne
         text="Organizational Experience"
         style={{
-          color: '#e75480',
+          color: '#ffffff',
           fontWeight: 'bold',
           fontSize: '30px',
           padding: '80px 0 40px 0',

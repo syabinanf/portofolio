@@ -60,7 +60,7 @@ const styles = {
   },
   heading: {
     textAlign: 'center',
-    color: '#e75480',
+    color: '#ffffff',
     fontWeight: 'bold',
     fontSize: '35px',
     padding: '40px 0',

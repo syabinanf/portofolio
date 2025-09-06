@@ -40,7 +40,7 @@ export default function StandardImageList() {
       <TextEffectOne
         text="Certification"
         style={{
-          color: '#e75480',
+          color: '#ffffff',
           fontWeight: 'bold',
           fontSize: '30px',
           paddingBottom: '40px',

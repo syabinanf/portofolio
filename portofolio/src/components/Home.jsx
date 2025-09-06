@@ -193,7 +193,7 @@ export default function Home() {
                     <img
                       src={value}
                       alt={key}
-                      className="img-fluid rounded border border-transparent border-4"
+                      className="img-fluid"
                       style={{
                         width: "100px",
                         height: "100px",
