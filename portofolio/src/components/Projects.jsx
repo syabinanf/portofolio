@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
-import { TextEffectOne } from 'react-text-animate';
 import { ui, programming } from '../const/pro';
 
 const styles = {
@@ -15,22 +14,20 @@ const styles = {
     textAlign: 'center',
     color: '#ffffff',
     fontWeight: 'bold',
-    fontSize: '35px',
-    padding: '40px 0',
+    fontSize: '32px',
+    margin: '40px 0 20px 0',
   },
 
-  // GRID CARD
   projectContainer: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
     gap: '30px',
     width: '100%',
     maxWidth: '1200px',
     justifyItems: 'center',
-    padding: '20px 0',
+    padding: '10px 0 40px 0',
   },
 
-  // SINGLE CARD
   cardBox: {
     width: '100%',
     maxWidth: '350px',
@@ -45,13 +42,11 @@ const styles = {
     transition: 'all 0.25s ease',
   },
 
-  // Hover (ditambahkan lewat inline)
   cardHover: {
-    transform: 'translateY(-5px)',
-    boxShadow: '0 8px 25px rgba(0,0,0,0.25)',
+    transform: 'translateY(-6px)',
+    boxShadow: '0 8px 28px rgba(0,0,0,0.25)',
   },
 
-  // Gambar
   cardImageTop: {
     width: '100%',
     height: '200px',
@@ -60,7 +55,6 @@ const styles = {
     marginBottom: '15px',
   },
 
-  // Konten di bawah gambar
   cardContentBox: {
     display: 'flex',
     flexDirection: 'column',
@@ -78,102 +72,73 @@ const styles = {
   },
 };
 
-export default function About() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+export default function Projects() {
   const [hoverIndex, setHoverIndex] = useState(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const renderProjectCard = (item, index) => (
+    <div
+      key={item.title}
+      style={{
+        ...styles.cardBox,
+        ...(hoverIndex === index ? styles.cardHover : {}),
+      }}
+      onMouseEnter={() => setHoverIndex(index)}
+      onMouseLeave={() => setHoverIndex(null)}
+    >
+      <img src={item.img} alt={item.title} style={styles.cardImageTop} />
 
-  const renderProjectCard = (item, index) => {
-    return (
-      <div
-        key={item.title}
-        style={{
-          ...styles.cardBox,
-          ...(hoverIndex === index ? styles.cardHover : {}),
-        }}
-        onMouseEnter={() => setHoverIndex(index)}
-        onMouseLeave={() => setHoverIndex(null)}
-      >
-        {/* Gambar */}
-        <img
-          src={item.img}
-          alt={item.title}
-          style={styles.cardImageTop}
-        />
+      <div style={styles.cardContentBox}>
+        <h3 style={{ fontWeight: 'bold', color: 'white', fontSize: '18px' }}>
+          {item.title}
+        </h3>
 
-        {/* Konten */}
-        <div style={styles.cardContentBox}>
-          <h3 style={{ fontWeight: 'bold', color: 'white', fontSize: '18px' }}>
-            {item.title}
-          </h3>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {(item?.tag || []).map((tag, i) => (
+            <Button key={i} variant="outlined" disabled style={styles.tagButton}>
+              {tag}
+            </Button>
+          ))}
+        </div>
 
-          {/* Tag */}
-          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-            {(item?.tag || []).map((tag, i) => (
+        <p style={{ color: 'white', opacity: 0.8, fontSize: '14px' }}>
+          {item.desc}
+        </p>
+
+        <div style={{ marginTop: '10px' }}>
+          {item.link ? (
+            <a href={item.link} target="_blank" rel="noopener noreferrer">
               <Button
-                key={i}
                 variant="outlined"
-                disabled
-                style={styles.tagButton}
+                style={{
+                  fontSize: '14px',
+                  padding: '10px 20px',
+                  color: '#F2827F',
+                }}
               >
-                {tag}
+                View Project
               </Button>
-            ))}
-          </div>
-
-          {/* Deskripsi */}
-          <p style={{ color: 'white', opacity: 0.8, fontSize: '14px' }}>
-            {item.desc}
-          </p>
-
-          {/* Tombol */}
-          <div style={{ marginTop: '10px' }}>
-            {item.link ? (
-              <a href={item.link} target="_blank" rel="noopener noreferrer">
-                <Button
-                  variant="outlined"
-                  style={{
-                    fontSize: '14px',
-                    padding: '10px 20px',
-                    color: '#F2827F',
-                  }}
-                >
-                  View Project
-                </Button>
-              </a>
-            ) : (
-              <Button
-                variant="contained"
-                disabled
-                style={{ opacity: 0.5, padding: '10px 20px' }}
-              >
-                Coming Soon
-              </Button>
-            )}
-          </div>
+            </a>
+          ) : (
+            <Button variant="contained" disabled style={{ opacity: 0.5 }}>
+              Coming Soon
+            </Button>
+          )}
         </div>
       </div>
-    );
-  };
+    </div>
+  );
 
   return (
     <section style={styles.section}>
-      
-      {/* UI/UX Section */}
-      <TextEffectOne text="UI/UX and Graphic Design Projects" style={styles.heading} />
+
+      {/* UI/UX SECTION */}
+      <h2 style={styles.heading}>UI/UX and Graphic Design Projects</h2>
       <div style={styles.projectContainer}>
         {ui.map((item, i) => renderProjectCard(item, i))}
       </div>
 
-      {/* Programming Section */}
-      <TextEffectOne text="Programming Projects" style={styles.heading} />
+      {/* PROGRAMMING SECTION */}
+      <h2 style={styles.heading}>Programming Projects</h2>
       <div style={styles.projectContainer}>
         {programming.map((item, i) => renderProjectCard(item, i))}
       </div>
