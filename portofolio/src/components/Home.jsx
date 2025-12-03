@@ -343,6 +343,96 @@ export default function Home() {
           <Projects />
         </ScrollReveal>
 
+
+{/* ========================= LET'S COLLAB SECTION ========================= */}
+<ScrollReveal>
+  <div
+    className="text-center py-5"
+    style={{ marginTop: "60px", marginBottom: "30px" }}
+  >
+    <h2
+      style={{
+        fontSize: "clamp(2rem, 5vw, 2.4rem)",
+        fontWeight: "700",
+        color: "#ffc1cc",
+        marginBottom: "10px",
+      }}
+    >
+      Let’s Collab 🤝
+    </h2>
+
+    <p
+      style={{
+        color: "#ffffff",
+        fontSize: "1rem",
+        marginBottom: "25px",
+      }}
+    >
+      Feel free to reach out and connect with me on social media!
+    </p>
+
+    {/* SOCIAL ICONS */}
+    <div
+      className="d-flex justify-content-center gap-4"
+      style={{ flexWrap: "wrap" }}
+    >
+      {/* INSTAGRAM */}
+      <a
+        href="https://www.instagram.com/sybninanf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="d-flex align-items-center gap-2 px-4 py-2"
+        style={{
+          border: "2px solid #ffc1cc",
+          borderRadius: "12px",
+          color: "#ffc1cc",
+          textDecoration: "none",
+          fontWeight: "600",
+          transition: "0.3s",
+        }}
+        onMouseOver={(e) => {
+          e.currentTarget.style.backgroundColor = "#ffc1cc";
+          e.currentTarget.style.color = "black";
+        }}
+        onMouseOut={(e) => {
+          e.currentTarget.style.backgroundColor = "transparent";
+          e.currentTarget.style.color = "#ffc1cc";
+        }}
+      >
+        <i className="bi bi-instagram" style={{ fontSize: "1.5rem" }}></i>
+        Instagram
+      </a>
+
+      {/* LINKEDIN */}
+      <a
+        href="https://www.linkedin.com/in/syabina-nur-pajriyanti-b082aa199/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="d-flex align-items-center gap-2 px-4 py-2"
+        style={{
+          border: "2px solid #ffc1cc",
+          borderRadius: "12px",
+          color: "#ffc1cc",
+          textDecoration: "none",
+          fontWeight: "600",
+          transition: "0.3s",
+        }}
+        onMouseOver={(e) => {
+          e.currentTarget.style.backgroundColor = "#ffc1cc";
+          e.currentTarget.style.color = "black";
+        }}
+        onMouseOut={(e) => {
+          e.currentTarget.style.backgroundColor = "transparent";
+          e.currentTarget.style.color = "#ffc1cc";
+        }}
+      >
+        <i className="bi bi-linkedin" style={{ fontSize: "1.5rem" }}></i>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</ScrollReveal>
+
       </Container>
     </section>
   );
