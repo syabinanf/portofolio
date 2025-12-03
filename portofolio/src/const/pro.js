@@ -67,9 +67,7 @@ export const ui = [
         link: 'https://www.figma.com/proto/oW2fMW7gKIFUJHgLTtB8gE/Konser-Amal---Syabina-?page-id=0%3A1&node-id=12-64&viewport=313%2C114%2C0.09&t=K5rrATk6wyAFuRWE-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A2',
         tag: ['UI/UX', 'Website', 'Donation'],
         desc: 'This project is a UI case study of landing page design for the “Pijar Music” charity concert aimed at music lovers. The landing page is designed to make it easier for users to buy concert tickets as well as donate, with features such as information on performing artists, donation goals, payment methods, and transparency reports on donation distribution. All proceeds from ticket sales will be channeled to social activities, making this concert not only entertainment, but also a real action to share.'
-    }]
-
-export const grapic = [
+    },
     {
         img: bem,
         title: 'BEM FT UCA Kominfo division project',
@@ -81,5 +79,7 @@ export const grapic = [
         title: 'Freelance Grapic Desain',
         tag: ['Grapic Design', 'Pamflet', 'Sticker'],
         desc: 'As a freelance graphic designer, I have worked on various design projects according to client needs, such as brand logo creation, business Instagram feed design, digital and printed promotional banners, and event certificates. Each project is tailored to the client visual identity and communication objectives, with a flexible design approach and a final result that is ready to be used for professional and commercial needs.'
-    },
+    }
+    
 ]
+

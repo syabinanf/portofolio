@@ -2,8 +2,14 @@ import kodio from '../assets/exp/1.png';
 import govokasi from '../assets/exp/2.png';
 import novo from '../assets/exp/4.png';
 import bem from '../assets/exp/3.png';
+import kem from '../assets/exp/5.png';
 
 export const experienced = [
+   {
+    img: kem,
+    title: 'Fassilitator KKA || Kemendikdas',
+    desc: 'Trained teachers (elementary to high school) in coding and artificial intelligence. Developed learning modules: Introduction to AI, Computational Thinking, AI Ethics, and Applied AI. Improved teachers digital literacy and instructional skills for 21st‑century education'
+  },
   {
     img: kodio,
     title: 'Part Time IT Trainer || Coding Studio',

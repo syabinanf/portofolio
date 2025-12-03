@@ -18,14 +18,19 @@
     "@mui/material": "^5.18.0",
     "@primer/octicons-react": "^19.15.1",
     "bootstrap": "^5.3.5",
-    "framer-motion": "^12.9.2",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.25",
     "motion": "^12.9.2",
     "react": "^19.0.0",
     "react-awesome-button": "^7.0.5",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
-    "react-text-animate": "^2.1.1"
+    "react-intersection-observer": "^10.0.0",
+    "react-slick": "^0.31.0",
+    "react-text-animate": "^2.1.1",
+    "slick-carousel": "^1.8.1",
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",

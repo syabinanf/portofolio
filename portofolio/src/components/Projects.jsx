@@ -1,63 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Pagination from '@mui/material/Pagination';
 import { TextEffectOne } from 'react-text-animate';
-import { ui, programming, grapic } from '../const/pro';
+import { ui, programming } from '../const/pro';
 
-// --- Anda bisa menggunakan file CSS terpisah (direkomendasikan) ---
-// import './About.css';
-
-// Atau, gunakan objek styling di dalam komponen
 const styles = {
   section: {
-    padding: '60px 20px', // Gunakan padding horizontal yang lebih responsif
+    padding: '60px 20px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    textAlign: 'center',
   },
-  projectContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '40px',
-    flexWrap: 'wrap',
-    color: '#ffc1cc',
-    minHeight: '400px',
-    width: '100%', // Pastikan container memenuhi lebar penuh
-  },
-  projectCard: {
-    display: 'flex',
-    flexDirection: 'row', // Default: tata letak mendatar untuk layar besar
-    alignItems: 'center',
-    gap: '20px',
-    flexWrap: 'wrap', // Izinkan wrapping jika konten tidak muat
-    maxWidth: '1200px', // Batasi lebar maksimum untuk desktop
-    padding: '0 10px',
-  },
-  cardImage: {
-    width: '100%', // Lebar gambar 100% dari container
-    maxWidth: '480px', // Batasi lebar maksimum
-    height: 'auto', // Tinggi menyesuaikan secara proporsional
-    borderRadius: '8px',
-  },
-  cardContent: {
-    textAlign: 'left',
-    flex: '1', // Memungkinkan konten mengisi ruang yang tersedia
-    minWidth: '300px', // Batasi lebar minimum untuk menghindari terlalu sempit
-  },
-  tagButton: {
-    margin: '5px 10px 5px 0',
-    border: '1px solid white',
-    color: 'white',
-    opacity: 0.5,
-    fontSize: '15px',
-    whiteSpace: 'nowrap', // Hindari tag pecah baris
-  },
-  pagination: {
-    '& .MuiPaginationItem-root': { color: 'white', borderColor: 'white' },
-    '& .Mui-selected': { backgroundColor: 'white', color: '#121212' },
-  },
+
   heading: {
     textAlign: 'center',
     color: '#ffffff',
@@ -65,38 +18,71 @@ const styles = {
     fontSize: '35px',
     padding: '40px 0',
   },
-};
 
-// Menggunakan media queries untuk tata letak handphone
-const mobileStyles = {
-  projectCard: {
-    flexDirection: 'column', // Tata letak vertikal untuk layar kecil
-    alignItems: 'center',
+  // GRID CARD
+  projectContainer: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '30px',
+    width: '100%',
+    maxWidth: '1200px',
+    justifyItems: 'center',
+    padding: '20px 0',
   },
-  cardImage: {
-    maxWidth: '100%', // Gambar selalu 100% di layar kecil
-    height: 'auto',
+
+  // SINGLE CARD
+  cardBox: {
+    width: '100%',
+    maxWidth: '350px',
+    backgroundColor: '#FEFCFC10',
+    borderRadius: '18px',
+    padding: '20px',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+    display: 'flex',
+    flexDirection: 'column',
+    backdropFilter: 'blur(4px)',
+    border: '1px solid rgba(255,255,255,0.1)',
+    transition: 'all 0.25s ease',
+  },
+
+  // Hover (ditambahkan lewat inline)
+  cardHover: {
+    transform: 'translateY(-5px)',
+    boxShadow: '0 8px 25px rgba(0,0,0,0.25)',
+  },
+
+  // Gambar
+  cardImageTop: {
+    width: '100%',
+    height: '200px',
+    objectFit: 'cover',
+    borderRadius: '12px',
+    marginBottom: '15px',
+  },
+
+  // Konten di bawah gambar
+  cardContentBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+    textAlign: 'left',
+  },
+
+  tagButton: {
+    margin: '5px 10px 5px 0',
+    border: '1px solid white',
+    color: 'white',
+    opacity: 0.6,
+    fontSize: '13px',
+    padding: '2px 10px',
   },
 };
 
 export default function About() {
-  const itemsPerPage = 1;
-
-  const [pageUI, setPageUI] = useState(1);
-  const [pageProg, setPageProg] = useState(1);
-  const [pageGraphic, setPageGraphic] = useState(1);
-
-  const handleChangeUI = (event, value) => setPageUI(value);
-  const handleChangeProg = (event, value) => setPageProg(value);
-  const handleChangeGraphic = (event, value) => setPageGraphic(value);
-
-  const getCurrentItem = (list, page) => list[(page - 1) * itemsPerPage] || {};
-
-  // Gunakan state untuk mendeteksi apakah layar adalah mobile
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [hoverIndex, setHoverIndex] = useState(null);
 
-  // Efek untuk mendeteksi perubahan ukuran layar
-  React.useEffect(() => {
+  useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -104,22 +90,33 @@ export default function About() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const renderProjectCard = (item) => {
-    // Gabungkan styling default dan mobile
-    const currentCardStyle = isMobile ? { ...styles.projectCard, ...mobileStyles.projectCard } : styles.projectCard;
-    const currentImageStyle = isMobile ? { ...styles.cardImage, ...mobileStyles.cardImage } : styles.cardImage;
-
+  const renderProjectCard = (item, index) => {
     return (
-      <div style={currentCardStyle}>
+      <div
+        key={item.title}
+        style={{
+          ...styles.cardBox,
+          ...(hoverIndex === index ? styles.cardHover : {}),
+        }}
+        onMouseEnter={() => setHoverIndex(index)}
+        onMouseLeave={() => setHoverIndex(null)}
+      >
+        {/* Gambar */}
         <img
           src={item.img}
           alt={item.title}
-          style={currentImageStyle}
+          style={styles.cardImageTop}
         />
-        <div style={styles.cardContent}>
-          <h3 style={{ fontWeight: 'bold' }}>{item.title}</h3>
-          <div style={{ margin: '10px 0', display: 'flex', flexWrap: 'wrap' }}>
-            {(item.tag || []).map((tag, i) => (
+
+        {/* Konten */}
+        <div style={styles.cardContentBox}>
+          <h3 style={{ fontWeight: 'bold', color: 'white', fontSize: '18px' }}>
+            {item.title}
+          </h3>
+
+          {/* Tag */}
+          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            {(item?.tag || []).map((tag, i) => (
               <Button
                 key={i}
                 variant="outlined"
@@ -130,16 +127,33 @@ export default function About() {
               </Button>
             ))}
           </div>
-          <p>{item.desc}</p>
-          <div style={{ marginTop: '20px' }}>
+
+          {/* Deskripsi */}
+          <p style={{ color: 'white', opacity: 0.8, fontSize: '14px' }}>
+            {item.desc}
+          </p>
+
+          {/* Tombol */}
+          <div style={{ marginTop: '10px' }}>
             {item.link ? (
               <a href={item.link} target="_blank" rel="noopener noreferrer">
-                <Button variant="outlined" style={{ fontSize: '18px', padding: '15px 30px', color: '#F2827F' }}>
+                <Button
+                  variant="outlined"
+                  style={{
+                    fontSize: '14px',
+                    padding: '10px 20px',
+                    color: '#F2827F',
+                  }}
+                >
                   View Project
                 </Button>
               </a>
             ) : (
-              <Button variant="contained" disabled style={{ opacity: 0.5, padding: '15px 30px' }}>
+              <Button
+                variant="contained"
+                disabled
+                style={{ opacity: 0.5, padding: '10px 20px' }}
+              >
                 Coming Soon
               </Button>
             )}
@@ -151,59 +165,19 @@ export default function About() {
 
   return (
     <section style={styles.section}>
+      
       {/* UI/UX Section */}
-      <TextEffectOne
-        text="UI/UX Projects"
-        style={styles.heading}
-      />
+      <TextEffectOne text="UI/UX and Graphic Design Projects" style={styles.heading} />
       <div style={styles.projectContainer}>
-        {renderProjectCard(getCurrentItem(ui, pageUI))}
+        {ui.map((item, i) => renderProjectCard(item, i))}
       </div>
-      <Stack spacing={2} alignItems="center" sx={{ mt: 4 }}>
-        <Pagination
-          count={Math.ceil(ui.length / itemsPerPage)}
-          page={pageUI}
-          onChange={handleChangeUI}
-          variant="outlined"
-          sx={styles.pagination}
-        />
-      </Stack>
 
       {/* Programming Section */}
-      <TextEffectOne
-        text="Programming Projects"
-        style={styles.heading}
-      />
+      <TextEffectOne text="Programming Projects" style={styles.heading} />
       <div style={styles.projectContainer}>
-        {renderProjectCard(getCurrentItem(programming, pageProg))}
+        {programming.map((item, i) => renderProjectCard(item, i))}
       </div>
-      <Stack spacing={2} alignItems="center" sx={{ mt: 4 }}>
-        <Pagination
-          count={Math.ceil(programming.length / itemsPerPage)}
-          page={pageProg}
-          onChange={handleChangeProg}
-          variant="outlined"
-          sx={styles.pagination}
-        />
-      </Stack>
 
-      {/* Graphic Design Section */}
-      <TextEffectOne
-        text="Graphic Design Projects"
-        style={styles.heading}
-      />
-      <div style={styles.projectContainer}>
-        {renderProjectCard(getCurrentItem(grapic, pageGraphic))}
-      </div>
-      <Stack spacing={2} alignItems="center" sx={{ mt: 4 }}>
-        <Pagination
-          count={Math.ceil(grapic.length / itemsPerPage)}
-          page={pageGraphic}
-          onChange={handleChangeGraphic}
-          variant="outlined"
-          sx={styles.pagination}
-        />
-      </Stack>
     </section>
   );
 }

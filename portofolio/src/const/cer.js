@@ -9,6 +9,11 @@ import novo from '../assets/sertif/novo.jpeg';
 import seniko from '../assets/sertif/penulis.jpeg';
 import seniko1 from '../assets/sertif/presenter.jpeg';
 import kem from '../assets/sertif/kem.png';
+import serang1 from '../assets/sertif/fasser1.jpg';
+import serang2 from '../assets/sertif/fasser2.jpg';
+import serang3 from '../assets/sertif/fasser3.jpg';
+import bekasi from '../assets/sertif/bek.jpg';
+import jakbar from '../assets/sertif/jakbar.jpg';
 
 export const itemData = [
     {
@@ -54,4 +59,25 @@ export const itemData = [
     {
     img: kem,
       title: 'ToT Kemendikdas',
-    }];
+    },
+      {
+    img: serang1,
+      title: 'Fasilitator Serang 1 Kemendikdas',
+    },
+      {
+    img: serang2,
+      title: 'Fasilitator Serang 2 Kemendikdas',
+    },
+      {
+    img: serang3,
+      title: 'Fasilitator Serang 3 Kemendikdas',
+    }, 
+      {
+    img: jakbar,
+      title: 'Fasilitator Jakarta Barat Kemendikdas',
+    },
+       {
+    img: bekasi,
+      title: 'Fasilitator Bekasi Kemendikdas',
+    }
+  ];

@@ -1,99 +1,137 @@
 import React, { useState, useEffect } from 'react';
-import { TextEffectOne } from 'react-text-animate';
+import Slider from 'react-slick';
 import { experienced, organizational } from '../const/exp';
 
-export default function Experience() {
-  // Menggunakan state untuk mendeteksi apakah layar adalah mobile
-  const [isMobile, setIsMobile] = useState(false);
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-  // Efek untuk mendeteksi perubahan ukuran layar
+export default function Experience() {
+
+  const [isMobile, setIsMobile] = useState(false);
+  const [hoverIndex, setHoverIndex] = useState(null);
+
   useEffect(() => {
     const handleResize = () => {
-      // Menentukan breakpoint untuk mode mobile (misal: 768px)
       setIsMobile(window.innerWidth <= 768);
     };
-
-    // Panggil sekali saat komponen dimuat
     handleResize();
-
-    // Tambahkan event listener untuk memantau perubahan ukuran layar
-    window.addEventListener('resize', handleResize);
-
-    // Hapus event listener saat komponen dilepas
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const contentStyle = {
-    display: 'flex',
-    alignItems: 'flex-start',
-    gap: '30px',
-    color: 'white',
-    justifyContent: 'center',
-    // Mengubah flex-direction secara dinamis
-    flexDirection: isMobile ? 'column' : 'row',
-    flexWrap: isMobile ? 'wrap' : 'nowrap',
-    marginBottom: '60px',
-    // Mengatur lebar maksimum untuk tata letak yang rapi di desktop
-    maxWidth: '1200px',
-    margin: '0 auto 60px auto',
-    padding: '0 20px',
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 30000,
+    pauseOnHover: false,
+    arrows: false,
+    speed: 700,
+    adaptiveHeight: true,
   };
 
-  const imageStyle = {
-    // Mengubah width gambar menjadi 100% dari container
-    width: isMobile ? '100%' : '480px',
-    // Mengubah height menjadi 'auto' agar proporsional
-    height: 'auto',
-    borderRadius: '8px',
-    objectFit: 'cover',
-    // Batasi lebar maksimum gambar
-    maxWidth: '480px',
+  // =============================
+  //  CARD LANDSCAPE STYLE
+  // =============================
+
+  const cardBox = {
+    backgroundColor: "#ffffff10",
+    borderRadius: "18px",
+    padding: "22px",
+    boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
+    display: "flex",
+    flexDirection: isMobile ? "column" : "row",
+    gap: "20px",
+    alignItems: "center",
+    border: "1px solid rgba(255,255,255,0.1)",
+    transition: "all 0.25s ease",
+    maxWidth: "1000px",
+    margin: "0 auto",
   };
 
-  const textContainerStyle = {
-    // Memungkinkan text container mengisi ruang yang tersedia
+  const cardHover = {
+    transform: "translateY(-5px)",
+    boxShadow: "0 8px 25px rgba(0,0,0,0.25)",
+  };
+
+  const imageLandscape = {
+    width: isMobile ? "100%" : "45%",
+    height: "260px",
+    objectFit: "cover",
+    borderRadius: "14px",
+  };
+
+  const contentBox = {
     flex: 1,
-    textAlign: 'left',
-    color: '#ffc1cc',
-    // Mengatur lebar minimum untuk menghindari terlalu sempit
-    minWidth: '300px',
+    display: "flex",
+    flexDirection: "column",
+    gap: "12px",
+    textAlign: isMobile ? "center" : "left",
   };
 
-  const renderExperience = (data) => (
-    data.map((exp, index) => (
-      <div key={index} style={contentStyle}>
-        <img src={exp.img} alt={exp.title} style={imageStyle} />
-        <div style={textContainerStyle}>
-          <h3 style={{ fontWeight: 'bold' }}>{exp.title}</h3>
-          <p>{exp.desc}</p>
+  // =============================
+  //   RENDER CAROUSEL LANDSCAPE
+  // =============================
+
+  const renderCarousel = (data) => (
+    <Slider {...sliderSettings}>
+      {data.map((exp, index) => (
+        <div key={index}>
+          <div
+            style={{ 
+              ...cardBox, 
+              ...(hoverIndex === index ? cardHover : {}) 
+            }}
+            onMouseEnter={() => setHoverIndex(index)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            {/* Gambar kiri */}
+            <img src={exp.img} alt={exp.title} style={imageLandscape} />
+
+            {/* Konten kanan */}
+            <div style={contentBox}>
+              <h3 style={{ color: "white", fontWeight: "bold", fontSize: "22px" }}>
+                {exp.title}
+              </h3>
+              <p style={{ color: "white", opacity: 0.8, lineHeight: "1.5" }}>
+                {exp.desc}
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    ))
+      ))}
+    </Slider>
   );
 
-  return (
-    <section style={{ padding: '60px 20px', textAlign: 'center' }}>
-      <TextEffectOne
-        text="Work Experience"
-        style={{
-          color: '#ffffff',
-          fontWeight: 'bold',
-          fontSize: '30px',
-          paddingBottom: '40px',
-        }}
-      />
-      {renderExperience(experienced)}
+  // =============================
 
-      <TextEffectOne
-        text="Organizational Experience"
-        style={{
-          color: '#ffffff',
-          fontWeight: 'bold',
-          fontSize: '30px',
-          padding: '80px 0 40px 0',
-        }}
-      />
-      {renderExperience(organizational)}
+  return (
+    <section style={{ padding: "60px 20px", textAlign: "center" }}>
+
+      <h2 style={{
+        color: "#ffffff",
+        fontWeight: "bold",
+        fontSize: "30px",
+        marginBottom: "40px",
+      }}>
+        Work Experience
+      </h2>
+
+      {renderCarousel(experienced)}
+
+      <h2 style={{
+        color: "#ffffff",
+        fontWeight: "bold",
+        fontSize: "30px",
+        margin: "80px 0 40px 0",
+      }}>
+        Organizational Experience
+      </h2>
+
+      {renderCarousel(organizational)}
+
     </section>
   );
 }

@@ -1,33 +1,18 @@
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
+import React from 'react';
 import { useMediaQuery, useTheme } from '@mui/material';
-
 import { TextEffectOne } from 'react-text-animate';
-import { itemData } from '../const/cer'; // Pastikan path dan isi itemData benar
+import { itemData } from '../const/cer';
 
-export default function StandardImageList() {
+export default function CertificationCard() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
-  // Menentukan jumlah kolom berdasarkan lebar layar
+  // Jumlah kolom berdasarkan ukuran layar
   const getCols = () => {
-    if (isMobile) {
-      return 1; // 1 kolom untuk handphone
-    }
-    if (isTablet) {
-      return 2; // 2 kolom untuk tablet
-    }
-    return 3; // 3 kolom untuk laptop/desktop
-  };
-
-  // Menentukan lebar image list berdasarkan layar
-  const getWidth = () => {
-    if (isMobile) {
-      return '100%';
-    }
-    return 900; // Lebar tetap 900px untuk layar besar
+    if (isMobile) return 1;
+    if (isTablet) return 2;
+    return 3;
   };
 
   return (
@@ -47,44 +32,61 @@ export default function StandardImageList() {
         }}
       />
 
-      <ImageList
-        sx={{
-          // Gunakan '100%' untuk membuat ImageList responsif
-          width: isMobile ? '100%' : 900,
+      {/* GRID CARD */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: `repeat(${getCols()}, 1fr)`,
+          gap: '20px',
+          maxWidth: '900px',
           margin: '0 auto',
-          color: 'white',
-          // Menyesuaikan tinggi agar tidak ada overflow
-          overflow: 'hidden',
         }}
-        // Menggunakan fungsi getCols() untuk props `cols`
-        cols={getCols()}
-        gap={16}
       >
         {itemData.map((item, index) => (
-          <ImageListItem key={index}>
+          <div
+            key={index}
+            style={{
+              background: '#1b1b1d',
+              borderRadius: '12px',
+              overflow: 'hidden',
+              paddingBottom: '15px',
+              boxShadow: '0 4px 10px rgba(0,0,0,0.4)',
+              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              cursor: 'pointer',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.03)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.5)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.boxShadow = '0 4px 10px rgba(0,0,0,0.4)';
+            }}
+          >
             <img
               src={item.img}
               alt={item.title}
-              loading="lazy"
               style={{
-                borderRadius: '8px',
                 width: '100%',
-                height: 'auto',
+                height: '170px',
                 objectFit: 'cover',
               }}
             />
-            <ImageListItemBar
-              title={item.title}
-              position="below"
-              sx={{
-                // Menyesuaikan ukuran font dan padding pada ImageListItemBar untuk mobile
-                fontSize: isMobile ? '0.8rem' : '1rem',
-                padding: isMobile ? '4px' : '8px',
+
+            <h3
+              style={{
+                color: 'white',
+                fontSize: isMobile ? '0.9rem' : '1rem',
+                fontWeight: '600',
+                padding: '10px 14px',
+                textAlign: 'center',
               }}
-            />
-          </ImageListItem>
+            >
+              {item.title}
+            </h3>
+          </div>
         ))}
-      </ImageList>
+      </div>
     </section>
   );
 }
