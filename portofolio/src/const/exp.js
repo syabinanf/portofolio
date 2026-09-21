@@ -87,9 +87,9 @@ export const experienced = [
     ],
   },
   {
-    title: 'Computational Thinking & Applied AI Teacher Training || Saint John',
-    employer: 'MAXY',
     img: saintJohn,
+    employer: 'MAXY',
+    title: 'Computational Thinking & Applied AI Teacher Training || Saint John',
     role: 'Curriculum Developer & AI Trainer',
     desc: 'Developed learning materials and delivered training for Saint John teachers on computational thinking, prompting techniques, and applied AI. Focused the content on helping educators approach repetitive work systematically and identify practical ways to use AI in everyday tasks.',
     details: [
@@ -104,8 +104,8 @@ export const experienced = [
       { src: puspaKomdigi, alt: 'Puspa Komdigi training documentation' },
     ],
     title: 'Applied AI Teaching & Curriculum Development || Komdigi',
+    role: 'Lead Applied AI Curriculum Developer',
     projectType: 'Professional Work Assignment',
-    role: 'Lead Applied AI Curriculum Developer (Group Project / Collaborative Partnership)',
     desc: 'Architected an end-to-end learning framework and instructional materials to accelerate digital transformation and AI adoption among civil servants (ASN).',
     details: [
       {
@@ -124,17 +124,23 @@ export const experienced = [
   },
    {
     img: kem,
+    employer: 'MAXY',
     title: 'Fassilitator KKA || Kemendikdas',
+    role: 'Facilitator',
     desc: 'Trained teachers (elementary to high school) in coding and artificial intelligence. Developed learning modules: Introduction to AI, Computational Thinking, AI Ethics, and Applied AI. Improved teachers digital literacy and instructional skills for 21st‑century education'
   },
   {
     img: kodio,
+    employer: 'MAXY',
     title: 'Part Time IT Trainer || Coding Studio',
+    role: 'IT Trainer',
     desc: 'Taught programming and game development for 6-18 year olds using a project-based method, which increased student understanding by 85% with fun, interactive materials.'
   },
   {
     img: govokasi,
+    employer: 'MAXY',
     title: 'Project-Based Internship Web Developer || GOVOKASI',
+    role: 'Web Developer Intern',
     desc: 'Redesigned the UI of startup Videfly to be more interactive and user-friendly, collaborated with the team to develop a more intuitive UX, and presented the design results to stakeholders through project presentations.'
   }
 ];
@@ -142,12 +148,16 @@ export const experienced = [
 export const organizational = [
   {
     img: novo,
+    employer: 'Novoclub by ParagonCorp',
     title: 'Wardah Community Hub || Novoclub by ParagonCorp',
+    role: 'Marketing & Analytics Intern',
     desc: 'Conducted analytics-based market research and digital marketing strategies to support the Paragon brand, as well as attended a self-development bootcamp on time management, energy, and personal branding. Successfully increased digital engagement by 30% through designed online campaigns.'
   },
   {
     img: bem,
+    employer: 'BEM FT UCA',
     title: 'Head of the Communication and Information Division || BEM FT UCA ',
+    role: 'Head of Communication',
     desc: 'Led a 20-person team in organizational communications and social media management, increasing engagement by 40% through digital campaigns.  Designed 20+ digital contents using Canva, Figma, CapCut, and Photoshop, managed distribution schedule, and increased social media reach to 5,000+ views in 6 months.'
   }
 ];
