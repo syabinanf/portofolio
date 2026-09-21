@@ -1,148 +1,103 @@
-import React, { useState, useEffect } from 'react';
-import Button from '@mui/material/Button';
-import { ui, programming } from '../const/pro';
+﻿import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { projects } from '../const/projectCatalog';
 
-const styles = {
-  section: {
-    padding: '60px 20px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
+const filters = ['All', 'UI/UX', 'Web', 'Mobile', 'Graphic Design', 'Curriculum Development'];
 
-  heading: {
-    textAlign: 'center',
-    color: '#ffffff',
-    fontWeight: 'bold',
-    fontSize: '32px',
-    margin: '40px 0 20px 0',
-  },
+const matchesFilter = (item, filter) => {
+  if (filter === 'All') return true;
 
-  projectContainer: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-    gap: '30px',
-    width: '100%',
-    maxWidth: '1200px',
-    justifyItems: 'center',
-    padding: '10px 0 40px 0',
-  },
+  const tags = item.tag.map((tag) => tag.toLowerCase());
 
-  cardBox: {
-    width: '100%',
-    maxWidth: '350px',
-    backgroundColor: '#FEFCFC10',
-    borderRadius: '18px',
-    padding: '20px',
-    boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-    display: 'flex',
-    flexDirection: 'column',
-    backdropFilter: 'blur(4px)',
-    border: '1px solid rgba(255,255,255,0.1)',
-    transition: 'all 0.25s ease',
-  },
+  if (filter === 'Curriculum Development') {
+    return tags.includes('curriculum development');
+  }
 
-  cardHover: {
-    transform: 'translateY(-6px)',
-    boxShadow: '0 8px 28px rgba(0,0,0,0.25)',
-  },
+  if (filter === 'UI/UX') {
+    return tags.some((tag) => tag.includes('ui') || tag.includes('design') || tag.includes('figma'));
+  }
 
-  cardImageTop: {
-    width: '100%',
-    height: '200px',
-    objectFit: 'cover',
-    borderRadius: '12px',
-    marginBottom: '15px',
-  },
+  if (filter === 'Web') {
+    return tags.some((tag) => tag.includes('website') || tag.includes('web'));
+  }
 
-  cardContentBox: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px',
-    textAlign: 'left',
-  },
+  if (filter === 'Mobile') {
+    return tags.some((tag) => tag.includes('mobile') || tag.includes('android') || tag.includes('flutter'));
+  }
 
-  tagButton: {
-    margin: '5px 10px 5px 0',
-    border: '1px solid white',
-    color: 'white',
-    opacity: 0.6,
-    fontSize: '13px',
-    padding: '2px 10px',
-  },
+  if (filter === 'Graphic Design') {
+    return tags.some((tag) => tag.includes('graphic') || tag.includes('grapic') || tag.includes('banner') || tag.includes('instagram'));
+  }
+
+  return true;
 };
 
 export default function Projects() {
-  const [hoverIndex, setHoverIndex] = useState(null);
+  const [activeFilter, setActiveFilter] = useState('All');
 
-  const renderProjectCard = (item, index) => (
-    <div
-      key={item.title}
-      style={{
-        ...styles.cardBox,
-        ...(hoverIndex === index ? styles.cardHover : {}),
-      }}
-      onMouseEnter={() => setHoverIndex(index)}
-      onMouseLeave={() => setHoverIndex(null)}
-    >
-      <img src={item.img} alt={item.title} style={styles.cardImageTop} />
-
-      <div style={styles.cardContentBox}>
-        <h3 style={{ fontWeight: 'bold', color: 'white', fontSize: '18px' }}>
-          {item.title}
-        </h3>
-
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-          {(item?.tag || []).map((tag, i) => (
-            <Button key={i} variant="outlined" disabled style={styles.tagButton}>
-              {tag}
-            </Button>
-          ))}
-        </div>
-
-        <p style={{ color: 'white', opacity: 0.8, fontSize: '14px' }}>
-          {item.desc}
-        </p>
-
-        <div style={{ marginTop: '10px' }}>
-          {item.link ? (
-            <a href={item.link} target="_blank" rel="noopener noreferrer">
-              <Button
-                variant="outlined"
-                style={{
-                  fontSize: '14px',
-                  padding: '10px 20px',
-                  color: '#F2827F',
-                }}
-              >
-                View Project
-              </Button>
-            </a>
-          ) : (
-            <Button variant="contained" disabled style={{ opacity: 0.5 }}>
-              Coming Soon
-            </Button>
-          )}
-        </div>
-      </div>
-    </div>
+  const visibleProjects = useMemo(
+    () => projects.filter((item) => matchesFilter(item, activeFilter)),
+    [activeFilter]
   );
 
   return (
-    <section style={styles.section}>
+    <section className="section-shell project-section">
+      <div className="container">
+        <div className="section-heading center">
+          <span className="section-kicker">Portfolio</span>
+          <h2>Ideas, made tangible.</h2>
+        </div>
 
-      {/* UI/UX SECTION */}
-      <h2 style={styles.heading}>UI/UX and Graphic Design Projects</h2>
-      <div style={styles.projectContainer}>
-        {ui.map((item, i) => renderProjectCard(item, i))}
+        <div className="project-controls">
+          {filters.map((filter) => (
+            <button
+              key={filter}
+              type="button"
+              aria-pressed={activeFilter === filter}
+              className={`filter-btn ${activeFilter === filter ? 'active' : ''}`}
+              onClick={() => setActiveFilter(filter)}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
+
+        <div className="project-grid">
+          {visibleProjects.map((item, index) => {
+            const firstTag = item.tag?.[0] || 'Project';
+            const isFeatured = Boolean(item.link);
+
+            return (
+              <Link to={`/projects/${item.slug}`} className="project-card project-preview-link" key={`${item.title}-${index}`}>
+                <div className="project-image">
+                  <img src={item.img} alt={item.title} loading="lazy" />
+                  <div className="project-badges">
+                    <span className="project-pill project-pill--type">{firstTag}</span>
+                    <span className={`project-pill ${isFeatured ? 'project-pill--live' : 'project-pill--concept'}`}>
+                      {isFeatured ? 'Featured' : 'Concept'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="project-body">
+                  <div className="project-meta">
+                    <span>{firstTag}</span>
+                    <span>{isFeatured ? 'Explore project' : 'Case study'}</span>
+                  </div>
+
+                  <h3>{item.title}</h3>
+
+                  <div className="project-actions">
+                    <span className="project-link">
+                      View details <span aria-hidden="true">→</span>
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
-
-      {/* PROGRAMMING SECTION */}
-      <h2 style={styles.heading}>Programming Projects</h2>
-      <div style={styles.projectContainer}>
-        {programming.map((item, i) => renderProjectCard(item, i))}
-      </div>
-
     </section>
   );
 }

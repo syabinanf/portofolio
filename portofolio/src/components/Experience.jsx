@@ -1,137 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import Slider from 'react-slick';
-import { experienced, organizational } from '../const/exp';
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+﻿import { Link } from 'react-router-dom';
+import { experienceGroups as groups } from '../const/experienceCatalog';
 
 export default function Experience() {
-
-  const [isMobile, setIsMobile] = useState(false);
-  const [hoverIndex, setHoverIndex] = useState(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 30000,
-    pauseOnHover: false,
-    arrows: false,
-    speed: 700,
-    adaptiveHeight: true,
-  };
-
-  // =============================
-  //  CARD LANDSCAPE STYLE
-  // =============================
-
-  const cardBox = {
-    backgroundColor: "#ffffff10",
-    borderRadius: "18px",
-    padding: "22px",
-    boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
-    display: "flex",
-    flexDirection: isMobile ? "column" : "row",
-    gap: "20px",
-    alignItems: "center",
-    border: "1px solid rgba(255,255,255,0.1)",
-    transition: "all 0.25s ease",
-    maxWidth: "1000px",
-    margin: "0 auto",
-  };
-
-  const cardHover = {
-    transform: "translateY(-5px)",
-    boxShadow: "0 8px 25px rgba(0,0,0,0.25)",
-  };
-
-  const imageLandscape = {
-    width: isMobile ? "100%" : "45%",
-    height: "260px",
-    objectFit: "cover",
-    borderRadius: "14px",
-  };
-
-  const contentBox = {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    gap: "12px",
-    textAlign: isMobile ? "center" : "left",
-  };
-
-  // =============================
-  //   RENDER CAROUSEL LANDSCAPE
-  // =============================
-
-  const renderCarousel = (data) => (
-    <Slider {...sliderSettings}>
-      {data.map((exp, index) => (
-        <div key={index}>
-          <div
-            style={{ 
-              ...cardBox, 
-              ...(hoverIndex === index ? cardHover : {}) 
-            }}
-            onMouseEnter={() => setHoverIndex(index)}
-            onMouseLeave={() => setHoverIndex(null)}
-          >
-            {/* Gambar kiri */}
-            <img src={exp.img} alt={exp.title} style={imageLandscape} />
-
-            {/* Konten kanan */}
-            <div style={contentBox}>
-              <h3 style={{ color: "white", fontWeight: "bold", fontSize: "22px" }}>
-                {exp.title}
-              </h3>
-              <p style={{ color: "white", opacity: 0.8, lineHeight: "1.5" }}>
-                {exp.desc}
-              </p>
-            </div>
-          </div>
-        </div>
-      ))}
-    </Slider>
-  );
-
-  // =============================
-
   return (
-    <section style={{ padding: "60px 20px", textAlign: "center" }}>
+    <section className="section-shell">
+      <div className="container">
+        <div className="section-heading center">
+          <span className="section-kicker">Experience</span>
+          <h2>Learning by building.<br />Growing by sharing.</h2>
+        </div>
 
-      <h2 style={{
-        color: "#ffffff",
-        fontWeight: "bold",
-        fontSize: "30px",
-        marginBottom: "40px",
-      }}>
-        Work Experience
-      </h2>
+        <div className="timeline-stack">
+          {groups.map((group) => (
+            <div key={group.title} className="timeline-group">
+              <h3>{group.title}</h3>
 
-      {renderCarousel(experienced)}
-
-      <h2 style={{
-        color: "#ffffff",
-        fontWeight: "bold",
-        fontSize: "30px",
-        margin: "80px 0 40px 0",
-      }}>
-        Organizational Experience
-      </h2>
-
-      {renderCarousel(organizational)}
-
+              <div className="project-grid">
+                {group.items.map((exp) => (
+                  <article className="project-card" key={exp.slug}>
+                    {exp.img && <Link className="project-image" to={`/experience/${exp.slug}`} aria-label={`View details: ${exp.title}`}>
+                      <img src={exp.img} alt={exp.title} loading="lazy" />
+                    </Link>}
+                    <Link className="project-body project-preview-link" to={`/experience/${exp.slug}`}>
+                      <div className="project-meta">{exp.projectType || group.title}</div>
+                      <h3>{exp.title}</h3>
+                      <div className="project-actions"><span className="project-link">View details <span aria-hidden="true">→</span></span></div>
+                    </Link>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

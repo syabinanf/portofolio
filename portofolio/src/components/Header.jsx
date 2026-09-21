@@ -1,11 +1,12 @@
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
 
 export default function Header() {
   const location = useLocation();
   const currentPath = location.pathname;
+  const [openLocation, setOpenLocation] = useState(null);
+  const isOpen = openLocation === location;
+  const closeMenu = () => setOpenLocation(null);
 
   const navLinks = [
     { label: 'Home', path: '/' },
@@ -15,33 +16,39 @@ export default function Header() {
   ];
 
   return (
-    <Navbar bg="transparent" data-bs-theme="dark" expand="lg" sticky="top">
-      <Container style={{ padding: '15px 20px' }} className="navbar-container">
-        <Navbar.Brand style={{ color:'#ffc1cc', fontWeight: 'bold', fontSize: '24px' }}>
-          Na's Portfolio
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
+    <header className="portfolio-navbar">
+      <nav className="container nav-shell" aria-label="Main navigation"
+        onKeyDown={(event) => {
+          if (event.key === 'Escape' && isOpen) {
+            closeMenu();
+            event.currentTarget.querySelector('.menu-toggle')?.focus();
+          }
+        }}>
+        <Link to="/" className="brand-mark" onClick={closeMenu}>
+          Syabina<span>Nur</span>
+        </Link>
+
+        <button type="button" className="menu-toggle" aria-controls="main-nav"
+          aria-expanded={isOpen} onClick={() => setOpenLocation(isOpen ? null : location)}>
+          {isOpen ? 'Close menu' : 'Menu'}
+        </button>
+        <div id="main-nav" className={`nav-menu${isOpen ? ' is-open' : ''}`}>
             {navLinks.map(({ label, path }) => (
-              <Nav.Link
+              <Link
                 key={path}
-                as={Link}
                 to={path}
-                style={{
-                  fontSize: '18px',
-                  fontWeight: currentPath === path ? 'bold' : 'normal',
-                  color: currentPath === path ? '#ffc1cc' : 'grey',
-                  margin: '0 10px',
-                  transition: 'all 0.3s',
-                }}
+                onClick={closeMenu}
+                aria-current={currentPath === path ? 'page' : undefined}
+                className={currentPath === path ? 'active' : ''}
               >
                 {label}
-              </Nav.Link>
+              </Link>
             ))}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          <a className="nav-cta" href="mailto:syabinanurpajriyanti@gmail.com" onClick={closeMenu}>
+            Let’s talk
+          </a>
+        </div>
+      </nav>
+    </header>
   );
 }
