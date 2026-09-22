@@ -10,9 +10,9 @@ export default function Header() {
 
   const navLinks = [
     { label: 'Home', path: '/' },
-    { label: 'Experience', path: '/experience' },
-    { label: 'Projects', path: '/projects' },
-    { label: 'Certification', path: '/certification' },
+    { label: 'Quest log', path: '/experience' },
+    { label: 'Missions', path: '/projects' },
+    { label: 'Achievements', path: '/certification' },
   ];
 
   return (
@@ -25,7 +25,7 @@ export default function Header() {
           }
         }}>
         <Link to="/" className="brand-mark" onClick={closeMenu}>
-          Syabina<span>Nur</span>
+          <span className="brand-star" aria-hidden="true">✦</span> Syabina<span>Nur</span>
         </Link>
 
         <button type="button" className="menu-toggle" aria-controls="main-nav"
@@ -38,8 +38,8 @@ export default function Header() {
                 key={path}
                 to={path}
                 onClick={closeMenu}
-                aria-current={currentPath === path ? 'page' : undefined}
-                className={currentPath === path ? 'active' : ''}
+                aria-current={(currentPath === path || (path !== '/' && currentPath.startsWith(`${path}/`))) ? 'page' : undefined}
+                className={(currentPath === path || (path !== '/' && currentPath.startsWith(`${path}/`))) ? 'active' : ''}
               >
                 {label}
               </Link>

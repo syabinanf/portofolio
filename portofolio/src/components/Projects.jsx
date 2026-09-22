@@ -44,11 +44,12 @@ export default function Projects() {
     <section className="section-shell project-section">
       <div className="container">
         <div className="section-heading center">
-          <span className="section-kicker">Portfolio</span>
-          <h2>Ideas, made tangible.</h2>
+          <span className="section-kicker">05 / Projects</span>
+          <h2>The mission board.</h2>
+          <p>Ideas made tangible, from the first sketch to working code.</p>
         </div>
 
-        <div className="project-controls">
+        <div className="project-controls" role="group" aria-label="Filter projects">
           {filters.map((filter) => (
             <button
               key={filter}
@@ -62,6 +63,8 @@ export default function Projects() {
           ))}
         </div>
 
+        <p className="result-count" role="status">{visibleProjects.length} missions · {activeFilter}</p>
+        {visibleProjects.length === 0 && <p>No missions in this category. Choose All to see every project.</p>}
         <div className="project-grid">
           {visibleProjects.map((item, index) => {
             const firstTag = item.tag?.[0] || 'Project';

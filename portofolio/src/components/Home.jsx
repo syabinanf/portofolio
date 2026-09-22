@@ -8,6 +8,9 @@ import ProfileCard from './Id_card';
 import { FaEnvelope, FaDownload, FaLinkedin, FaInstagram, FaGithub } from 'react-icons/fa';
 import Experience from '../components/Experience';
 import Projects from '../components/Projects';
+import Certification from './Certification';
+import PixelLandscape from './PixelLandscape';
+import { Link } from 'react-router-dom';
 
 import { useInView } from 'react-intersection-observer';
 
@@ -87,19 +90,20 @@ export default function Home() {
             <div>
               <ScrollReveal>
                 <div className="hero-copy">
-                  <span className="section-kicker">Design-minded. Detail-driven.</span>
+                  <span className="section-kicker">The adventurer’s journal · Portfolio</span>
                   <h1>
-                    Thoughtful design.<br />
-                    Useful code.<br />
-                    <span>Hi, I’m Syabina.</span>
+                    Hi, I’m Syabina.<br />
+                    <span>Learning is<br />an adventure.</span>
                   </h1>
+                  <p className="hero-role">Curriculum developer · AI trainer · Creative technologist</p>
                   <p>
                     {profile.summary}
                   </p>
 
                   <div className="cta-row">
+                    <Link className="primary-btn" to="/projects">Explore missions <span aria-hidden="true">→</span></Link>
                     <button
-                      className="primary-btn"
+                      className="secondary-btn"
                       type="button"
                       onClick={() => {
                         window.open(
@@ -150,13 +154,14 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <PixelLandscape />
       </section>
 
       <div className="discipline-strip" aria-label="UI/UX design, web development, mobile experiences">
         <div className="discipline-track" aria-hidden="true">
           {[0, 1].map((copy) => (
             <div className="discipline-set" key={copy}>
-              <span>UI/UX design</span><i>↗</i><span>Web development</span><i>↗</i><span>Mobile experiences</span><i>↗</i>
+                  <span>UI/UX design</span><i>✦</i><span>Web development</span><i>✦</i><span>Mobile experiences</span><i>✦</i>
             </div>
           ))}
         </div>
@@ -165,7 +170,7 @@ export default function Home() {
       <section className="section-shell">
         <div className="container">
           <div className="section-heading center">
-            <span className="section-kicker">What I bring</span>
+            <span className="section-kicker">01 / Character specialties</span>
             <h2>Making AI easier to learn and useful at work.</h2>
           </div>
 
@@ -183,11 +188,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-shell">
+      <section className="section-shell inventory-section" id="skills">
         <div className="container">
           <div className="section-heading center">
-            <span className="section-kicker">Stack</span>
-            <h2>Tools I use to turn ideas into real products.</h2>
+            <span className="section-kicker">02 / Skill inventory</span>
+            <h2>Tools packed for the journey.</h2>
+            <p>My working toolkit for turning ideas into real products.</p>
           </div>
 
           <div className="skill-grid">
@@ -220,7 +226,7 @@ export default function Home() {
       <section className="section-shell">
         <div className="container">
           <div className="section-heading center">
-            <span className="section-kicker">Strengths</span>
+            <span className="section-kicker">03 / Passive abilities</span>
             <h2>More than just technical skills.</h2>
           </div>
 
@@ -249,10 +255,13 @@ export default function Home() {
         <Projects />
       </ScrollReveal>
 
+      <Certification />
+
       <section className="section-shell cta-shell">
         <div className="container">
           <ScrollReveal>
             <div className="cta-panel">
+              <span className="section-kicker">The next chapter</span>
               <h2>Let’s make something useful.</h2>
               <p>
                 I enjoy working with teams that care about user experience, impactful design, and product quality.
