@@ -3,8 +3,9 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="site-footer">
+    <footer className="site-footer" id="connect">
       <div className="container footer-shell">
+        <p className="footer-connection">Let&apos;s connect.</p>
         <p>© {year} Syabina Nur Pajriyanti. Crafted with care.</p>
         <div className="footer-links">
           <a href="https://www.linkedin.com/in/syabina-nur-pajriyanti-b082aa199/" target="_blank" rel="noreferrer">LinkedIn</a>

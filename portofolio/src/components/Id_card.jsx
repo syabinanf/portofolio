@@ -8,7 +8,7 @@ export default function ProfileCard() {
       <img src={icons.ina} alt="Syabina Nur Pajriyanti" fetchPriority="high" />
       <figcaption>
         <strong>{profile.name}</strong>
-        <span>Curriculum Developer & AI Trainer</span>
+        <span>AI Trainer · Curriculum Developer · Software Developer</span>
         <span className="character-location">⌖ {profile.location}</span>
       </figcaption>
     </figure>

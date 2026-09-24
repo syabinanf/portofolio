@@ -18,7 +18,7 @@ export default function Experience() {
 
               <div className="project-grid">
                 {group.items.map((exp, index) => (
-                  <article className="project-card" key={exp.slug}>
+                  <article className="project-card project-card--compact" key={exp.slug}>
                     {exp.img && <Link className="project-image" to={`/experience/${exp.slug}`} aria-label={`View details: ${exp.title}`}>
                       <img src={exp.img} alt={exp.title} loading="lazy" />
                     </Link>}

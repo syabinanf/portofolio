@@ -3,10 +3,10 @@ import flutterLogo from '../assets/flutter-logo.png';
 import hermesLogo from '../assets/hermes.jfif?url';
 import n8nLogo from '../assets/n8n.svg';
 import { profile } from '../const/profile';
+import FeaturedQuests from './FeaturedQuests';
 import { useState } from 'react';
 import ProfileCard from './Id_card';
 import { FaEnvelope, FaDownload, FaLinkedin, FaInstagram, FaGithub } from 'react-icons/fa';
-import Experience from '../components/Experience';
 import Projects from '../components/Projects';
 import Certification from './Certification';
 import PixelLandscape from './PixelLandscape';
@@ -84,7 +84,7 @@ export default function Home() {
   };
   return (
     <div className="portfolio-page">
-      <section className="section-shell hero-shell">
+      <section className="section-shell hero-shell" id="home">
         <div className="container">
           <div className="hero-grid">
             <div>
@@ -95,10 +95,20 @@ export default function Home() {
                     Hi, I’m Syabina.<br />
                     <span>Learning is<br />an adventure.</span>
                   </h1>
-                  <p className="hero-role">Curriculum developer · AI trainer · Creative technologist</p>
-                  <p>
+                  <p className="hero-role">Applied AI trainer · Curriculum developer · Software developer</p>
+                  <ul className="hero-skills" aria-label="Primary skills">
+                    <li>AI Training</li><li>Curriculum Development</li><li>Automation</li>
+                  </ul>
+                  <p className="hero-summary-desktop">
                     {profile.summary}
                   </p>
+                  <div className="hero-summary-mobile">
+                    <p>I train, design curricula, and build practical web and mobile solutions for real-world work.</p>
+                    <details>
+                      <summary>More about my background</summary>
+                      <p>{profile.summary}</p>
+                    </details>
+                  </div>
 
                   <div className="cta-row">
                     <Link className="primary-btn" to="/projects">Explore missions <span aria-hidden="true">→</span></Link>
@@ -167,7 +177,9 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="section-shell">
+      <div id="experience"><FeaturedQuests /></div>
+
+      <section className="section-shell" id="specialties">
         <div className="container">
           <div className="section-heading center">
             <span className="section-kicker">01 / Character specialties</span>
@@ -223,7 +235,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-shell">
+      <section className="section-shell" id="soft-skills">
         <div className="container">
           <div className="section-heading center">
             <span className="section-kicker">03 / Passive abilities</span>
@@ -247,15 +259,9 @@ export default function Home() {
         </div>
       </section>
 
-      <ScrollReveal>
-        <Experience />
-      </ScrollReveal>
+      <div id="projects"><Projects featured /></div>
 
-      <ScrollReveal>
-        <Projects />
-      </ScrollReveal>
-
-      <Certification />
+      <div id="certification"><Certification featured /></div>
 
       <section className="section-shell cta-shell">
         <div className="container">

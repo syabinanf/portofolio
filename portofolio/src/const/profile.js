@@ -5,7 +5,7 @@ export const profile = {
   location: 'Tangerang, Banten',
   linkedin: 'https://www.linkedin.com/in/syabina-nur-pajriyanti-b082aa199/',
   github: 'https://github.com/sybninanf',
-  summary: 'I’m a curriculum developer and trainer focused on applied AI and workflow automation. I create learning materials and deliver hands-on training that connect technology with real tasks—from classroom preparation to administrative and business workflows. With a background in Informatics Engineering, web and mobile development, and UI/UX design, I bring a technical foundation and an audience-first approach to making AI practical and accessible.',
+  summary: 'I’m an applied AI trainer, curriculum developer, and software developer who turns ideas into useful learning experiences and working digital products. I create practical learning materials, deliver hands-on training, and build web and mobile solutions using Python, React, Flutter, Kotlin, SQL, and workflow automation tools. With a background in Informatics Engineering and UI/UX design, I connect clear communication with the ability to design, code, and ship audience-focused solutions.',
   education: {
     institution: 'Universitas Cendekia Abditama',
     dates: 'August 2020 - July 2024',
